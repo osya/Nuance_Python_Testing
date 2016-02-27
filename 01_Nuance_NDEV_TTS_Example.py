@@ -36,13 +36,8 @@ if __name__ == '__main__':
     url = '%s%s?%s' % (args.tts_uri, args.tts_endpoint, params)
     req = requests.post(url, data=ttsText, headers=headers)
 
-    # Create wave file as Bytes (writ binary mode is 'wb')
-    filename = 'tts_%s.wav' % time.strftime("%H_%M_%S")
-    with open(filename, 'wb') as wav_file:
-        wav_file.write(req.content)
-
     # Play file using Windows
-    play_wav = winsound.PlaySound(filename, winsound.SND_FILENAME)
+    play_wav = winsound.PlaySound(req.content, winsound.SND_MEMORY)
 
     # Play file using Linux
     # https://pypi.python.org/pypi/pysox/0.3.6.alpha
