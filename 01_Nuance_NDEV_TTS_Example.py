@@ -1,6 +1,5 @@
 import requests
 import winsound
-import time
 import random
 import string
 import urllib
