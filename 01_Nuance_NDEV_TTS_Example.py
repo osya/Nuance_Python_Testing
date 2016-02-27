@@ -10,7 +10,7 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser()
     p.add_argument('-a', dest='app_id')
     p.add_argument('-k', dest='app_key')
-    p.add_argument('--tts_url')
+    p.add_argument('--tts_uri')
     p.add_argument('--tts_endpoint')
     args = p.parse_args()
 
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     # Use Requests to send POST message with Query String
     params = urllib.urlencode({'appId': args.app_id, 'appKey': args.app_key, 'id': randomID, 'ttsLang': ttsLang,
                                'voice': voice})
-    url = '%s%s?%s' % (args.tts_url, args.tts_endpoint, params)
+    url = '%s%s?%s' % (args.tts_uri, args.tts_endpoint, params)
     req = requests.post(url, data=ttsText, headers=headers)
 
     # Create wave file as Bytes (writ binary mode is 'wb')
